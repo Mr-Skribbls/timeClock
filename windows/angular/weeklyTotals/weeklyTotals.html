@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Time Clock</title>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.js"></script>
+
+  <link rel="stylesheet" href="../styles/table.css">
+</head>
+<body ng-app="mainApp">
+  <div ng-controller="weeklyTotals as vm" layout="column" layout-align="center center">
+    <div layout="row">
+      <md-input-container flex="auto">
+        <label>Daily Hrs</label>
+        <input ng-model="vm.dailyHrs" />
+      </md-input-container>
+      <md-button style="height: 45px;" ng-click="vm.setDailyHrs()">Set</md-button>
+    </div>
+
+    
+    <div>{{vm.totalTime}}</div>
+    <div>{{vm.clockOut}}</div>
+  </div>
+  
+  <div class="audio">
+    <audio src="../../../assets/sounds/tickTok.mp3" id="tick-tok" preload="auto"></audio>
+    <audio src="../../../assets/sounds/Celebration.mp3" id="celebrate" preload="auto"></audio>
+  </div>
+
+  <script src="../module.js"></script>
+  <script src="../services/weekDay.js"></script>
+  <script src="../services/time.js"></script>
+  <script src="./controller.js"></script>
+</body>
+</html>

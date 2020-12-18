@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Time Clock</title>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.js"></script>
+
+  <link rel="stylesheet" href="../styles/table.css">
+</head>
+<body ng-app="mainApp">
+  <div ng-controller="jobTable" layout="column" layout-align="center center" layout-padding>
+    <div flex="auto" layout="row">
+      <md-button ng-click="cycleDayLeft()"><</md-button>
+      <h3 flex="auto">{{displayDay}}</h3>
+      <md-button ng-click="cycleDayRight()">></md-button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Start/Stop</th>
+          <th>Timer</th>
+          <th>Decimal</th>
+          <th>Memo</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td ng-bind="totalTime"></td>
+          <td ng-bind="totalDecimalTime"></td>
+          <td></td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr ng-repeat="project in projects">
+          <td>{{project.name}}</td>
+          <td ng-if="!isWorkingProject(project)">
+            <md-button ng-click="start(project)">Start</ng-button>
+          </td>
+          <td ng-if="isWorkingProject(project)">
+            <md-button ng-click="stop(project)">Stop</ng-button>
+          </td>
+          <td ng-bind="project.display_time"></td>
+          <td ng-bind="decimalTime(project)"></td>
+          <td><textarea name="" id="" cols="auto" rows="8" ng-model="project.memo" ng-change="save()"></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  
+  <script src="../module.js"></script>
+  <script src="../services/weekDay.js"></script>
+  <script src="../services/time.js"></script>
+  <script src="./controller.js"></script>
+</body>
+</html>
